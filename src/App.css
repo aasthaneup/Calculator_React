@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  background: url(img/bg.webp);
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height:1000px;
+  padding: 10%;
 }
 
 .App-logo {
@@ -35,4 +42,51 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* self customized css */
+/* ------------------- */
+
+.calbox{
+  height: fit-content;
+  width: 400px;
+  margin: auto;
+  background-color: #3a2713;
+  border: #fc932a solid 3px;
+  box-shadow: 0 0 10px #8f0202;
+  border-radius: 10px;
+}
+.result{
+  min-height: 100px;
+  border-bottom: #fc932a solid 2px;
+  color: white;
+  text-align: end;
+  padding-top: 10px;
+}
+.res{
+  font-size: 60px;
+}
+table{
+  width: 100%;
+  height: 100%;
+  font-size: 35px;
+}
+table tbody tr td{
+  padding: 25px 0px 25px 0px;
+  box-shadow:0 0 5px #8f0202;
+  border: #f8f2f2 solid 1px;
+  color: white;
+
+}
+.top{
+  background-color: gray;
+  width: 25%;
+
+}
+.side{
+  background-color: #fc932a;
+}
+.equal{
+  border: none;
+  padding: 0px 30px 0px 30px;
 }
