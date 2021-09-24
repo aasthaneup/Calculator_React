@@ -2,95 +2,72 @@ import React, {useState} from "react";
 
 
 const Calculator = props => {
+    const [entry, setEntry] = useState("0");
     const [myResult, setMyResult] = useState(0);
-    const [entryTotal, setEntryTotal] = useState(0);
-    const [entryNow, setEntryNow] = useState("0");
-    const [operating, setOperating] = useState(false);
-    const [calculated, setCalculated] = useState(false);
-    const [entries, setEntries] = useState ("0");
-    const [number, setNumber] = useState(0);
 
-    const onClickHandler = (fig) => {
-        // e.preventDefault();
-        console.log(isNaN(fig));
-        if(fig =="ac"){
-            setCalculated(false);
-            setEntries("0");
-            setEntryNow("0");
+    const onClickHandler = e => {
+        if(e.target.value ==="AC"){
+            // reset everything
+            setEntry("0");
             setMyResult(0);
-            setEntryTotal("0");
-            setOperating(false);
-            setNumber(0);
         }
-        else if(!(isNaN(fig))){
-            if(entryNow!="0"){
-                setEntryNow(entryNow+fig);
-                setEntries(entryNow+fig);
-            }
-            else{
-                setEntryNow(fig);
-                setEntries(fig);
-            }
+        else if(e.target.value==="="){
+            console.log("clicked equals!")
+            let res = eval(entry);
+            setMyResult(res);
         }
-        else if(isNaN && !("ac")){
-
+        else{
+            if(entry==="0"){
+                setEntry(e.target.value);
+                }
+                else{
+                    setEntry(entry+e.target.value);
+                    console.log("here entry till now:"+(entry+e.target.value))
+                }
         }
-        else if(isNaN && !(("plusminus")|| ("percent"))){
-
-        }
-        console.log(entryNow);
     }
-
-    const onSubmitHandler = e => {
-        e.preventDefault();
-        console.log("submitted");
-    }
-
     return(
         <div className = "calbox">
             <div className="result">
-                <small className = "text-secondary pe-3">({entries})</small>
-                <p className = "res">{entryNow}</p>
+                <small className = " pe-3">({entry})</small>
+                <p className = "res">{myResult}</p>
             </div>
-            <form onSubmit = {onSubmitHandler}>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td onClick = {e=> onClickHandler("ac")} className = "top">AC</td>
-                            <td onClick =  {e=>onClickHandler("plusminus")}  className = "top">+/-</td>
-                            <td onClick = {e=> onClickHandler("percent")}  className = "top">%</td>
-                            <td onClick = {e=> onClickHandler("divide")}  className = "side">&divide;</td>
-                        </tr>
-                        <tr>
-                            <td onClick = {e=> onClickHandler("7")}>7</td>
-                            <td onClick = {e=> onClickHandler("8")}>8</td>
-                            <td onClick = {e=> onClickHandler("9")}>9</td>
-                            <td onClick =  {e=>onClickHandler("multiply")}  className = "side">&times;</td>
-                        </tr>
-                        <tr>
-                            <td onClick = {e=> onClickHandler("4")}>4</td>
-                            <td onClick = {e=> onClickHandler("5")}>5</td>
-                            <td onClick = {e=> onClickHandler("6")}>6</td>
-                            <td onClick = {e=> onClickHandler("minus")} className = "side">-</td>
-                        </tr>
-                        <tr>
-                            <td onClick = {e=> onClickHandler("1")}>1</td>
-                            <td onClick = {e=> onClickHandler("2")}>2</td>
-                            <td onClick = {e=> onClickHandler("3")}>3</td>
-                            <td onClick = {e=> onClickHandler("plus")} className = "side">+</td>
-                        </tr>
-                        <tr>
-                            <td onClick = {e=> onClickHandler("0")} colspan="2">0</td>
-                            <td onClick = {e=> onClickHandler("dot")}>.</td>
-                            <td className = "side">
-                                <button className = "pr-4 pl-4 side equal">=</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                </form>
-            </div>
-
+            
+            <table>
+                <tbody>
+                    <tr>
+                        <td><button onClick = {onClickHandler} className = "top" value = "AC">AC</button></td>
+                        <td><button onClick = {onClickHandler}  className = "top" value = "+-">+/-</button></td>
+                        <td><button onClick = {onClickHandler}  className = "top" value = "%">%</button></td>
+                        <td><button onClick = {onClickHandler}  className = "side" value = "/">&divide;</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onClick = {onClickHandler} value = "7">7</button></td>
+                        <td><button onClick = {onClickHandler} value = "8">8</button></td>
+                        <td><button onClick = {onClickHandler} value = "9">9</button></td>
+                        <td><button onClick = {onClickHandler} className = "side"  value = "*">&times;</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onClick = {onClickHandler} value = "4">4</button></td>
+                        <td><button onClick = {onClickHandler} value = "5">5</button></td>
+                        <td><button onClick = {onClickHandler} value = "6">6</button></td>
+                        <td><button onClick = {onClickHandler} className = "side" value = "-">-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onClick = {onClickHandler} value = "1">1</button></td>
+                        <td><button onClick = {onClickHandler} value = "2">2</button></td>
+                        <td><button onClick = {onClickHandler} value = "3">3</button></td>
+                        <td><button onClick = {onClickHandler} className = "side" value = "+">+</button></td>
+                    </tr>
+                    <tr>
+                        <td colSpan = "2" className ="zer"><button onClick = {onClickHandler} className = "zero"  value = "0">0</button></td>
+                        <td><button onClick = {onClickHandler} value = ".">.</button></td>
+                        <td><button onClick = {onClickHandler} className = "side eq" value = "=">=</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     );
 }
 
