@@ -4,26 +4,41 @@ import React, {useState} from "react";
 const Calculator = props => {
     const [entry, setEntry] = useState("0");
     const [myResult, setMyResult] = useState(0);
+    const [clickedEquals, setClickedEquals] = useState(false);
 
     const onClickHandler = e => {
         if(e.target.value ==="AC"){
             // reset everything
             setEntry("0");
             setMyResult(0);
+            setClickedEquals(false);
         }
         else if(e.target.value==="="){
             console.log("clicked equals!")
             let res = eval(entry);
             setMyResult(res);
+            setEntry(res);
+            setClickedEquals(true);
         }
         else{
-            if(entry==="0"){
+            if(clickedEquals === true){
+                if(isNaN(e.target.value)){
+                    setEntry(myResult+e.target.value)
+                }else{
+                    setEntry(e.target.value);
+                }
+                setClickedEquals(false);
+            }
+            else{
+                if(entry==="0"){
                 setEntry(e.target.value);
                 }
                 else{
                     setEntry(entry+e.target.value);
                     console.log("here entry till now:"+(entry+e.target.value))
                 }
+            }
+            
         }
     }
     return(
