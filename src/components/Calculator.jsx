@@ -59,7 +59,7 @@ const Calculator = props => {
                     <tr>
                         <td><button onClick = {onClickHandler} className = "top" value = "AC">AC</button></td>
                         <td><button onClick = {onClickHandler}  className = "top" value = "+-">+/-</button></td>
-                        <td><button onClick = {onClickHandler}  className = "top" value = "%">%</button></td>
+                        <td><button disabled  className = "top" value = "%">%</button></td>
                         <td><button onClick = {onClickHandler}  className = "side" value = "/">&divide;</button></td>
                     </tr>
                     <tr>
